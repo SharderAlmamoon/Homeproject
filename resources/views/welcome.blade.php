@@ -80,8 +80,8 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class="title m-b-md font-weight-bold">
+                    AL-MAMUN
                 </div>
 
                 <div class="links">
