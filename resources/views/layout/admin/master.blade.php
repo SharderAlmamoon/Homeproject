@@ -12,7 +12,8 @@
 
         <div class="main-panel">
             <div class="content-wrapper">
-              @include('layout.admin._maincon')
+             @yield('maincontent')
+                @yield('form')
             </div>
             <!-- content-wrapper ends -->
             <!-- partial:partials/_footer.html -->
