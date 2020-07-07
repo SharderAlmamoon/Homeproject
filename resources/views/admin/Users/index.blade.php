@@ -1,5 +1,8 @@
 @extends('layout.admin.master')
 @section('form')
+    <div class="text-right mb-4">
+        <a class="text-decoration-none font-weight-bold" href="{{route('dashboard')}}">Dashboard /</a><a class="text-decoration-none font-weight-bold" href="{{route('user.create')}}">Create User</a>
+    </div>
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">

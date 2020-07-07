@@ -16,7 +16,6 @@
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{route('user.index')}}">ALL User List</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{route('user.create')}}">Create User</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Edit User</a></li>
                 </ul>
             </div>
         </li>

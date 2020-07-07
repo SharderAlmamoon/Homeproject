@@ -4,7 +4,7 @@
     <div class="col-md-8 grid-margin stretch-card">
     <div class="card">
     <div class="card-body">
-    <h4 class="card-title font-weight-bold">Create New User</h4>
+    <h4 class="card-title font-weight-bold">Edite User</h4>
     <form class="forms-sample" action="{{route('user.update',$user->id)}}" method="post">
         @csrf
         @method('put')
