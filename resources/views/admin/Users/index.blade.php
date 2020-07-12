@@ -2,7 +2,7 @@
 @section('form')
     <div class="text-right mb-4">
         <a class="text-decoration-none font-weight-bold" href="{{route('dashboard')}}">Dashboard /</a><a class="text-decoration-none font-weight-bold" href="{{route('user.create')}}">Create User</a>
-    </div>
+     @include('layout.admin._message')
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -30,7 +30,7 @@
                                 <form class="d-inline-block" action="{{route('user.destroy',$user->id)}}" method="post">
                                     @csrf
                                     @method('delete')
-                                    <button class="btn btn-danger">Delete</button>
+                                    <button class="btn btn-danger" onclick="return confirm('Are You Sure Want To Delete')">Delete</button>
                                 </form>
 
                             </td>
