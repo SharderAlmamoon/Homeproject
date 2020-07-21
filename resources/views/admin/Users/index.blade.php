@@ -13,7 +13,7 @@
                         @foreach($users as $user)
                         <tr>
                             <td>
-                              {{$user->id}}
+                              {{$serial++}}
                             </td>
                             <td>
                               {{$user->name}}
@@ -62,4 +62,6 @@
             </div>
         </div>
     </div>
+    {{$users->render()}}
+
 @endsection
