@@ -14,7 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $data['categories']=Category::paginate(2);
+        $data['title']='All CAtegory LIST';
+        $data['serial']=($data['categories']->currentPage() !=1)?($data['categories']->perPage()*($data['categories']->currentPage()-1))+1:1;
+        return view('admin.category.index',$data);
     }
 
     /**
@@ -24,7 +27,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $data['title']='Create A new Category';
+       return view('admin.category.create',$data);
     }
 
     /**
@@ -35,7 +39,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $request->validate([
+            'name' => 'required',
+             'status' => 'required',
+         ]);
+         Category::create($request->all());
+         session()->flash('message','CAtegory Created Done');
+         return redirect()->route('category.index');
     }
 
     /**
@@ -57,7 +67,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $data['title']='Create a Category';
+        $data['category']=$category;
+      return view('admin.category.edite',$data);
     }
 
     /**
@@ -69,7 +81,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+       $request->validate([
+           'name' => 'required',
+           'status' => 'required',
+       ]);
+       $category->update($request->all());
+        session()->flash('message','Category Has Been Updated');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -80,6 +98,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        session()->flash('message','Category Has Been DELETED');
+        return redirect()->route('category.index');
     }
 }
