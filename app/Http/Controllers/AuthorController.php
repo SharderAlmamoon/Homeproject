@@ -48,11 +48,7 @@ class AuthorController extends Controller
        ]);
        $data=$request->all();
        if ($request->image){
-           $image=$request->image;
-           $path='images/authors';
-           $image->move($path,$image->getClientOriginalName());
-           $fullpath=$path.'/'.$image->getClientOriginalName();
-           $data['image']=$fullpath;
+           $data['image'] = $this->fileupload($request->image);
        }
         Author::create($data);
         session()->flash('message','Authors Created Successfully');
@@ -100,17 +96,19 @@ class AuthorController extends Controller
         ]);
         $data=$request->all();
         if ($request->image){
-        $image=$request->image;
-        $path='images/authors';
-        $image->move($path,$image->getClientOriginalName());
-        $fulpath=$path.'/'.$image->getClientOriginalName();
-        $data['image']=$fulpath;
+         $data['image'] = $this->fileupload($request->image);
         }
          $author->update($data);
         session()->flash('message','Authors Updated Successfully');
         return redirect()->route('author.index');
     }
 
+    private function fileupload($image){
+        $path='images/authors';
+        $image->move($path,$image->getClientOriginalName());
+        $fulpath=$path.'/'.$image->getClientOriginalName();
+        return $fulpath;
+    }
     /**
      * Remove the specified resource from storage.
      *
