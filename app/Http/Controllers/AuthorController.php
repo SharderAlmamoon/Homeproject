@@ -43,8 +43,9 @@ class AuthorController extends Controller
        $request->validate([
            'name'=> 'required',
            'email'=> 'required|email|unique:authors',
-           'phone'=> 'required|unique:authors',
+           'phone'=> 'required|max:15|unique:authors',
            'status'=> 'required',
+           'image' => ' mimes:jpeg,jpg,png|max:1000',
        ]);
        $data=$request->all();
        if ($request->image){
@@ -63,7 +64,9 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        //
+        $data['title'] = 'Authors Profile';
+        $data['author'] = $author;
+        return view('admin.author.show',$data);
     }
 
     /**
@@ -91,12 +94,16 @@ class AuthorController extends Controller
         $request->validate([
             'name'=> 'required',
             'email'=> 'required|email|unique:authors,email,'.$author->id,
-            'phone'=> 'required|unique:authors,phone,'.$author->id,
+            'phone'=> 'required|max:15|unique:authors,phone,'.$author->id,
             'status'=> 'required',
+            'image' => ' mimes:jpeg,jpg,png|max:10000',
         ]);
         $data=$request->all();
         if ($request->image){
          $data['image'] = $this->fileupload($request->image);
+         if (file_exists($author->image)){
+             unlink($author->image);
+         }
         }
          $author->update($data);
         session()->flash('message','Authors Updated Successfully');
@@ -117,6 +124,9 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
+        if ($author->image && file_exists($author->photo)){
+            unlink($author->image);
+         }
        $author->delete();
        session()->flash('message','Author Deleted Successfully');
        return redirect()->route('author.index');

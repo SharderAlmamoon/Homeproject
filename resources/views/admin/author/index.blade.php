@@ -26,7 +26,7 @@
                             </td>
                             <td>
                                 <a class="btn btn-primary" href="{{route('author.edit',$author->id)}}">Edit</a>
-                                <a class="btn btn-info" href="">Show</a>
+                                <a class="btn btn-info" href="{{route('author.show',$author->id)}}">Show</a>
                                 <form class="d-inline-block" action="{{route('author.destroy',$author->id)}}" method="post">
                                     @csrf
                                     @method('delete')

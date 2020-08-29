@@ -28,7 +28,7 @@
 <div class="from-group">
     <label for="Image"> Image : </label>
     <input class="" type="file" name="image" id="Image"  >
-    @error('status')
+    @error('image')
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 </div>
