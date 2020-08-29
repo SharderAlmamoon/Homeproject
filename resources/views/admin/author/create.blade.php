@@ -8,7 +8,7 @@
     <div class="card">
     <div class="card-body">
     <h4 class="card-title font-weight-bold">Create New User</h4>
-    <form class="forms-sample" action="{{route('author.store')}}" method="post">
+    <form class="forms-sample" action="{{route('author.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         @include('admin.author._form')
         <button type="submit" class="btn btn-primary mr-2">Submit</button>

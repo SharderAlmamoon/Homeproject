@@ -5,7 +5,7 @@
     <div class="card">
     <div class="card-body">
     <h4 class="card-title font-weight-bold">Edite Author</h4>
-    <form class="forms-sample" action="{{route('author.update',$author->id)}}" method="post">
+    <form class="forms-sample" action="{{route('author.update',$author->id)}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('put')
            @include('admin.author._form')

@@ -26,14 +26,23 @@
     <textarea name="address" id="address" cols="30" rows="5" class="form-control" placeholder="Enter your Address">{{old('address',isset($author)?$author->address:null)}}</textarea>
 </div>
 <div class="from-group">
+    <label for="Image"> Image : </label>
+    <input class="" type="file" name="image" id="Image"  >
+    @error('status')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>
+<br>
+<div class="from-group">
     <label for="">&nbsp;STATUS &nbsp;&nbsp;&nbsp;::&nbsp;&nbsp;&nbsp;</label>
-    <label for="active">
-        <input type="radio" @if(old('status',isset($author)?$author->status:null) == 'Active' ) checked @endif name="status" value="Active" id="active"> Active
+    <label for="active" >
+        <input type="radio"  @if(old('status',isset($author)?$author->status:null) == 'Active' ) checked @endif  name="status" value="Active" id="active"> Active
     </label>&nbsp;&nbsp;&nbsp;
     <label for="inactive">
-        <input type="radio" name="status"  @if(old('status',isset($author)?$author->status:null) == 'Inactive' ) checked @endif value="Inactive" id="inactive"> Inactive
+        <input type="radio" name="status"  @if(old('status',isset($author)?$author->status:null) == 'Inactive' ) checked @endif  value="Inactive" id="inactive"> Inactive
     </label>
     @error('status')
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 </div>
+<br>
