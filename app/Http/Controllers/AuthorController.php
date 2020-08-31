@@ -45,7 +45,7 @@ class AuthorController extends Controller
            'email'=> 'required|email|unique:authors',
            'phone'=> 'required|max:15|unique:authors',
            'status'=> 'required',
-           'image' => ' mimes:jpeg,jpg,png|max:1000',
+           'image' => ' mimes:jpeg,jpg,png|max:10000',
        ]);
        $data=$request->all();
        if ($request->image){
@@ -112,8 +112,9 @@ class AuthorController extends Controller
 
     private function fileupload($image){
         $path='images/authors';
-        $image->move($path,$image->getClientOriginalName());
-        $fulpath=$path.'/'.$image->getClientOriginalName();
+        $file_name =encrypt(microtime()).'.'.$image->getClientOriginalExtension();
+        $image->move($path,$file_name);
+        $fulpath=$path.'/'.$file_name;
         return $fulpath;
     }
     /**
