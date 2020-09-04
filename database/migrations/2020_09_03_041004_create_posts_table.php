@@ -15,6 +15,16 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->unsignedBigInteger('author_id');
+            $table->foreign('author_id')->references('id')->on('authors');
+            $table->text('title');
+            $table->longText('details');
+            $table->text('image')->nullable();
+            $table->bigInteger('total_read')->default(0);
+            $table->boolean('is_featured')->default(false);
+            $table->enum('status',['Published','Unpublished'])->default('Unpublished');
             $table->timestamps();
         });
     }

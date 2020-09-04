@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Author;
+use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -24,7 +26,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $data['title']="Create a New Post";
+        $data['categories'] = Category::where('status','Active')->orderBy('name','ASC')->pluck('name','id');
+        $data['authors'] = Author::where('status','Active')->orderBy('name','ASC')->pluck('name','id');
+        return view('admin.post.create',$data);
     }
 
     /**
