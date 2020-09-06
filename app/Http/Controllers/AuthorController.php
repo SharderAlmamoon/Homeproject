@@ -125,7 +125,7 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        if ($author->image && file_exists($author->photo)){
+        if ($author->image && file_exists($author->image)){
             unlink($author->image);
          }
        $author->delete();

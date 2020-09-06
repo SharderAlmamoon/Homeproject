@@ -54,5 +54,4 @@
         </div>
     </div>
     {{$categories->render()}}
-
 @endsection
