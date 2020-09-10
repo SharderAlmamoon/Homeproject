@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
         $data['title']="All Post Here";
-        $data['posts'] = Post::orderBy('id','DESC')->paginate(2);
+        $data['posts'] = Post::orderBy('id','DESC')->paginate(3);
         $data['serial']=ManagepaginationSerial($data['posts']);
         return view('admin.post.index',$data);
     }
@@ -79,10 +79,10 @@ class PostController extends Controller
 
 
 
-    public function show(Post $post)
+    public function show($id)
     {
        $data['title'] = 'All post Show';
-       $data['post']=$post;
+       $data['post']=Post::with('category','author')->findOrFail($id);
        return view('admin.post.show',$data);
     }
 
