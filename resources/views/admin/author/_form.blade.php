@@ -42,6 +42,7 @@
         <input type="radio" name="status"  @if(old('status',isset($author)?$author->status:null) == 'Inactive' ) checked @endif  value="Inactive" id="inactive"> Inactive
     </label>
     @error('status')
+    
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 </div>
